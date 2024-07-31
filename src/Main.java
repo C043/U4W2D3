@@ -1,5 +1,8 @@
+import entities.Product;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Product gamba = new Product("Gamba", "Arte", 10);
+        System.out.println(gamba.getCategory());
     }
 }
