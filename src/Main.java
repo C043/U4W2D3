@@ -67,11 +67,11 @@ public class Main {
         System.out.println("Ordine di un customer di tier 2");
         giovanniOrder.getProducts().forEach(System.out::println);
         System.out.println("Prodotti che sono stati ordinati da clienti tier 2 fra il primo giugno 2024 e il 30 agosto 2024:");
-        List<Product> tier2Orders = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream()
+        List<Product> tier2OrderProducts = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream()
                 .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isBefore(LocalDate.parse("2024-08-30")) && order.getOrderDate().isAfter(LocalDate.parse("2024-06-01")))
                 .flatMap(order -> order.getProducts().stream())
                 .toList();
-        tier2Orders.forEach(System.out::println);
+        tier2OrderProducts.forEach(System.out::println);
     }
 
     public static List<Product> addToCart(List<Product> list1, List<Product> list2, List<Product> list3) {
