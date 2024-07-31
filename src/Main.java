@@ -2,9 +2,7 @@ import entities.Customer;
 import entities.Order;
 import entities.Product;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     private final static Random rand = new Random();
@@ -34,7 +32,7 @@ public class Main {
 
         Order aldoOrder = new Order("Sent", addToCart(books, babyProducts, boysProducts), aldo);
         Order giovanniOrder = new Order("Pending", addToCart(books, babyProducts, boysProducts), giovanni);
-        Order giacomoOrder = new Order("Sent", addToCart(books, babyProducts, boysProducts), giacomo);
+        Order giacomoOrder = new Order("Sent", addToCart(books, books, boysProducts), giacomo);
 
         System.out.println(aldoOrder);
         System.out.println(giovanniOrder);
@@ -47,11 +45,17 @@ public class Main {
         List<Product> expensiveBooks = books.stream().filter(book -> book.getPrice() > 100).toList();
         System.out.println("Lista libri costosi:");
         expensiveBooks.forEach(System.out::println);
+
+        System.out.println("--------------Es2------------------");
+        List<Order> ordersWithBaby = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream()
+                .filter(order -> order.getProducts().stream().anyMatch(product -> Objects.equals(product.getCategory(), "Baby")))
+                .toList();
+        ordersWithBaby.forEach(System.out::println);
     }
 
     public static List<Product> addToCart(List<Product> list1, List<Product> list2, List<Product> list3) {
         List<Product> shoppingCart = new ArrayList<>();
-        for (int i = 0; i < rand.nextInt(0, 10); i++) {
+        for (int i = rand.nextInt(0, 9); i < 10; i++) {
             int randomList = rand.nextInt(1, 3);
             switch (randomList) {
                 case 1 -> shoppingCart.add(list1.get(i));
