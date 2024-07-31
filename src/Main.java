@@ -27,9 +27,9 @@ public class Main {
             boysProducts.add(boysProduct);
         }
 
-        Customer aldo = new Customer("Aldo Baglio", 2);
+        Customer aldo = new Customer("Aldo Baglio", 1);
         Customer giovanni = new Customer("Giovanni Storti", 2);
-        Customer giacomo = new Customer("Giacomo Poretti", 2);
+        Customer giacomo = new Customer("Giacomo Poretti", 3);
 
         Order aldoOrder = new Order("Sent", addToCart(books, babyProducts, boysProducts), aldo);
         Order giovanniOrder = new Order("Pending", addToCart(books, babyProducts, boysProducts), giovanni);
@@ -64,6 +64,9 @@ public class Main {
         sale.forEach(System.out::println);
 
         System.out.println("--------------Es4------------------");
+        System.out.println("Ordine di un customer di tier 2");
+        giovanniOrder.getProducts().forEach(System.out::println);
+        System.out.println("Prodotti che sono stati ordinati da clienti tier 2 fra il primo giugno 2024 e il 30 agosto 2024:");
         List<Product> tier2Orders = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream()
                 .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isBefore(LocalDate.parse("2024-08-30")) && order.getOrderDate().isAfter(LocalDate.parse("2024-06-01")))
                 .flatMap(order -> order.getProducts().stream())
