@@ -2,6 +2,7 @@ import entities.Customer;
 import entities.Order;
 import entities.Product;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -61,6 +62,10 @@ public class Main {
             product.setPrice(product.getPrice() - out);
         }).toList();
         sale.forEach(System.out::println);
+
+        System.out.println("--------------Es4------------------");
+        List<Order> tier2Orders = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream().filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isBefore(LocalDate.parse("2024-08-30")) && order.getOrderDate().isAfter(LocalDate.parse("2024-06-01"))).toList();
+        tier2Orders.forEach(System.out::println);
     }
 
     public static List<Product> addToCart(List<Product> list1, List<Product> list2, List<Product> list3) {
