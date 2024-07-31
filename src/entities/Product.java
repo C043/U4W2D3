@@ -2,7 +2,7 @@ package entities;
 
 public class Product extends HasNameAndId {
     private final String category;
-    private final double price;
+    private double price;
 
     public Product(String name, String category, double price) {
         super(name);
@@ -16,6 +16,10 @@ public class Product extends HasNameAndId {
 
     public double getPrice() {
         return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override

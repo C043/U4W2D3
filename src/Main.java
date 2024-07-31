@@ -51,6 +51,16 @@ public class Main {
                 .filter(order -> order.getProducts().stream().anyMatch(product -> Objects.equals(product.getCategory(), "Baby")))
                 .toList();
         ordersWithBaby.forEach(System.out::println);
+
+        System.out.println("--------------Es3------------------");
+        System.out.println("Lista di prodotti prima dello sconto:");
+        boysProducts.forEach(System.out::println);
+        System.out.println("Lista di prodotti dopo lo sconto:");
+        List<Product> sale = boysProducts.stream().peek(product -> {
+            double out = product.getPrice() * 10 / 100;
+            product.setPrice(product.getPrice() - out);
+        }).toList();
+        sale.forEach(System.out::println);
     }
 
     public static List<Product> addToCart(List<Product> list1, List<Product> list2, List<Product> list3) {
