@@ -27,9 +27,9 @@ public class Main {
             boysProducts.add(boysProduct);
         }
 
-        Customer aldo = new Customer("Aldo Baglio", 2);
-        Customer giovanni = new Customer("Giovanni Storti", 3);
-        Customer giacomo = new Customer("Giacomo Poretti", 1);
+        Customer aldo = new Customer("Aldo Baglio", rand.nextInt(1, 3));
+        Customer giovanni = new Customer("Giovanni Storti", rand.nextInt(1, 3));
+        Customer giacomo = new Customer("Giacomo Poretti", rand.nextInt(1, 3));
 
         Order aldoOrder = new Order("Sent", addToCart(books, babyProducts, boysProducts), aldo);
         Order giovanniOrder = new Order("Pending", addToCart(books, babyProducts, boysProducts), giovanni);
@@ -64,7 +64,9 @@ public class Main {
         sale.forEach(System.out::println);
 
         System.out.println("--------------Es4------------------");
-        List<Order> tier2Orders = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream().filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isBefore(LocalDate.parse("2024-08-30")) && order.getOrderDate().isAfter(LocalDate.parse("2024-06-01"))).toList();
+        List<Order> tier2Orders = new ArrayList<>(Arrays.asList(aldoOrder, giacomoOrder, giovanniOrder)).stream()
+                .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isBefore(LocalDate.parse("2024-08-30")) && order.getOrderDate().isAfter(LocalDate.parse("2024-06-01")))
+                .toList();
         tier2Orders.forEach(System.out::println);
     }
 
